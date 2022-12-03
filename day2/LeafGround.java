@@ -103,12 +103,21 @@ Thread.sleep(2000);
 		Thread.sleep(3000);
 		WebElement resize = driver.findElement(By.xpath("//div[@class='ui-resizable-handle ui-resizable-e']"));
 		Point p=resize.getLocation();
-		
 		System.out.println("The actual image size:" +p);
 		Actions drop2=new Actions(driver);
-		drop2.dragAndDropBy(source, 140, 0).perform();
-		
+		drop2.dragAndDropBy(resize, 140, 60).perform();
+		WebElement resize2 = driver.findElement(By.xpath("//div[@class='ui-resizable-handle ui-resizable-s']"));
+		Point p1=resize.getLocation();
+		System.out.println("The actual image size:" +p);
+		Actions drop3=new Actions(driver);
+		drop2.dragAndDropBy(resize2, 0, 0).perform();
+	
+	
+	
 	}
+	
+	
+	
 }
 
 
