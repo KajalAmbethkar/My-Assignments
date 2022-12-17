@@ -1,53 +1,40 @@
-package week2.day1;
+package week6.day1;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+public class DuplicateLead extends BaseClassLeaf {
+	@BeforeClass
+	public void setData()
+	{
+		fileName="TestNgCreate";
+		sheetIndex=2;
+	}
+	@Test(dataProvider="fetchData",priority=3)
 
-public class DuplicateLead {
+	public void runDuplicateLead(String cName,String fName,String lName,String local,String dep,String des,String email, String des2,String c2,String f2) throws InterruptedException {
+		
+		
 
-	public static void main(String[] args) {
-		WebDriverManager.chromedriver().setup();
+		
+Thread.sleep(7000);
+//lead
+driver.findElement(By.linkText("Leads")).click();
 
-		// lanuch the browser
-		ChromeDriver driver = new ChromeDriver();
-
-		// load the url
-		driver.get("http://leaftaps.com/opentaps/control/main");
-
-		// maximize the browser
-		driver.manage().window().maximize();
-
-		// enter the username
-		WebElement eleusername = driver.findElement((By.id("username")));
-		eleusername.sendKeys("Demosalesmanager");
-
-		// enter the password
-		driver.findElement(By.id("password")).sendKeys("crmsfa");
-
-		// to click and go inside
-		driver.findElement(By.className("decorativeSubmit")).click();
-
-		// to click crmfsa
-		driver.findElement(By.linkText("CRM/SFA")).click();
-
-		// lead
-		driver.findElement(By.linkText("Leads")).click();
-
-		// create lead
-		driver.findElement(By.linkText("Create Lead")).click();
-
+// create lead
+driver.findElement(By.linkText("Create Lead")).click();
 		// company name
-		driver.findElement(By.id("createLeadForm_companyName")).sendKeys("TestLeaf");
+		driver.findElement(By.id("createLeadForm_companyName")).sendKeys(cName);
 
 		// first name
-		driver.findElement(By.id("createLeadForm_firstName")).sendKeys("Kajal");
+		driver.findElement(By.id("createLeadForm_firstName")).sendKeys(fName);
 
 		// last name
-		driver.findElement(By.id("createLeadForm_lastName")).sendKeys("Ambethkar");
+		driver.findElement(By.id("createLeadForm_lastName")).sendKeys(lName);
 		
 		//source
 		WebElement Tool = driver.findElement(By.id("createLeadForm_dataSourceId"));
@@ -56,16 +43,16 @@ public class DuplicateLead {
 
 
 		// first name (local)
-		driver.findElement(By.id("createLeadForm_firstNameLocal")).sendKeys("kaj");
+		driver.findElement(By.id("createLeadForm_firstNameLocal")).sendKeys(local);
 
 		// department feild
-		driver.findElement(By.id("createLeadForm_departmentName")).sendKeys("IT");
+		driver.findElement(By.id("createLeadForm_departmentName")).sendKeys(dep);
 
 		// description feild
-		driver.findElement(By.id("createLeadForm_description")).sendKeys("Hi.This is Kajal");
+		driver.findElement(By.id("createLeadForm_description")).sendKeys(des);
 
 		// e-mail id
-		driver.findElement(By.id("createLeadForm_primaryEmail")).sendKeys("kajalambethkar1990@gmail.com");
+		driver.findElement(By.id("createLeadForm_primaryEmail")).sendKeys(email);
 
 		// state
 		 WebElement eleTool = driver.findElement(By.id("createLeadForm_generalStateProvinceGeoId"));
@@ -85,13 +72,13 @@ public class DuplicateLead {
 		driver.findElement(By.id("createLeadForm_companyName")).clear();
 		
 		//add new company name
-		driver.findElement(By.id("createLeadForm_companyName")).sendKeys("MyCompany");
+		driver.findElement(By.id("createLeadForm_companyName")).sendKeys(c2);
 		
 		//clear first name'
 		driver.findElement(By.id("createLeadForm_firstName")).clear();
 		
 		//add new first name
-		driver.findElement(By.id("createLeadForm_firstName")).sendKeys("AKAJAL");
+		driver.findElement(By.id("createLeadForm_firstName")).sendKeys(f2);
 		
 		//click create lead
 		driver.findElement(By.name("submitButton")).click();
@@ -100,5 +87,14 @@ public class DuplicateLead {
 		System.out.println("The Page title is :" + driver.getTitle());
 
 	}
+	//@DataProvider(name="fetchData")
+	//public String[][] setData(){
+		//String[][] data=new String[1][3];
+		//data[0][0]="TestLeaf";
+		//data[0][1]="kajal";
+		//data[0][2]="ambethkar";
+		//return data;
 
 }
+
+
